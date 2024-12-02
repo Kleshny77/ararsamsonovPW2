@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		1E2E98C52CDDAD480027132B /* ararsamsonovPW2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ararsamsonovPW2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E2E98C52CDDAD480027132B /* ararsamsonovPW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ararsamsonovPW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW2" folder in "ararsamsonovPW2" target */ = {
+		1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 1E2E98C42CDDAD480027132B /* ararsamsonovPW2 */;
+			target = 1E2E98C42CDDAD480027132B /* ararsamsonovPW3 */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1E2E98C72CDDAD480027132B /* ararsamsonovPW2 */ = {
+		1E2E98C72CDDAD480027132B /* ararsamsonovPW3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW2" folder in "ararsamsonovPW2" target */,
+				1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */,
 			);
-			path = ararsamsonovPW2;
+			path = ararsamsonovPW3;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +45,7 @@
 		1E2E98BC2CDDAD480027132B = {
 			isa = PBXGroup;
 			children = (
-				1E2E98C72CDDAD480027132B /* ararsamsonovPW2 */,
+				1E2E98C72CDDAD480027132B /* ararsamsonovPW3 */,
 				1E2E98C62CDDAD480027132B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 		1E2E98C62CDDAD480027132B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1E2E98C52CDDAD480027132B /* ararsamsonovPW2.app */,
+				1E2E98C52CDDAD480027132B /* ararsamsonovPW3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +61,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1E2E98C42CDDAD480027132B /* ararsamsonovPW2 */ = {
+		1E2E98C42CDDAD480027132B /* ararsamsonovPW3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1E2E98D82CDDAD4A0027132B /* Build configuration list for PBXNativeTarget "ararsamsonovPW2" */;
+			buildConfigurationList = 1E2E98D82CDDAD4A0027132B /* Build configuration list for PBXNativeTarget "ararsamsonovPW3" */;
 			buildPhases = (
 				1E2E98C12CDDAD480027132B /* Sources */,
 				1E2E98C22CDDAD480027132B /* Frameworks */,
@@ -74,13 +74,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				1E2E98C72CDDAD480027132B /* ararsamsonovPW2 */,
+				1E2E98C72CDDAD480027132B /* ararsamsonovPW3 */,
 			);
-			name = ararsamsonovPW2;
+			name = ararsamsonovPW3;
 			packageProductDependencies = (
 			);
 			productName = ararsamsonovPW2;
-			productReference = 1E2E98C52CDDAD480027132B /* ararsamsonovPW2.app */;
+			productReference = 1E2E98C52CDDAD480027132B /* ararsamsonovPW3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E2E98C02CDDAD480027132B /* Build configuration list for PBXProject "ararsamsonovPW2" */;
+			buildConfigurationList = 1E2E98C02CDDAD480027132B /* Build configuration list for PBXProject "ararsamsonovPW3" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1E2E98C42CDDAD480027132B /* ararsamsonovPW2 */,
+				1E2E98C42CDDAD480027132B /* ararsamsonovPW3 */,
 			);
 		};
 /* End PBXProject section */
@@ -314,7 +314,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E2E98C02CDDAD480027132B /* Build configuration list for PBXProject "ararsamsonovPW2" */ = {
+		1E2E98C02CDDAD480027132B /* Build configuration list for PBXProject "ararsamsonovPW3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E2E98DB2CDDAD4A0027132B /* Debug */,
@@ -323,7 +323,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1E2E98D82CDDAD4A0027132B /* Build configuration list for PBXNativeTarget "ararsamsonovPW2" */ = {
+		1E2E98D82CDDAD4A0027132B /* Build configuration list for PBXNativeTarget "ararsamsonovPW3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E2E98D92CDDAD4A0027132B /* Debug */,
