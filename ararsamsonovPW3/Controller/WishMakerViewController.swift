@@ -16,6 +16,7 @@ final class WishMakerViewController: UIViewController {
     let descriptionLable = UILabel()
     let toggleButton = UIButton(type: .system)
     let methodSelectionButton = UIButton(type: .system)
+    let addWishButton: UIButton = UIButton(type: .system)
     let sliderStack = UIStackView()
        
     // MARK: - Lifecycle Methods
@@ -30,6 +31,7 @@ final class WishMakerViewController: UIViewController {
         
         configureTitle()
         configureDescription()
+        configureAddWishButton()
         configureSliders()
         configureToggleButton()
         configureMethodSelectionButton()

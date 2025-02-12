@@ -117,7 +117,7 @@ extension WishMakerViewController {
         
         sliderStack.pinLeft(to: view.safeAreaLayoutGuide.leadingAnchor, Constants.stackLeading)
         sliderStack.pinRight(to: view.safeAreaLayoutGuide.trailingAnchor, Constants.stackLeading)
-        sliderStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, Constants.stackBottom)
+        sliderStack.pinBottom(to: addWishButton.topAnchor, Constants.stackBottom)
         
         sliderRed.valueChanged = { [weak self] value in
             self?.upgradeBackgroundColor(red: value, green: Double(sliderGreen.slider.value), blue: Double(sliderBlue.slider.value))
@@ -130,6 +130,26 @@ extension WishMakerViewController {
         sliderBlue.valueChanged = { [weak self] value in
             self?.upgradeBackgroundColor(red: Double(sliderRed.slider.value), green: Double(sliderGreen.slider.value), blue: value)
         }
+    }
+    
+    final func configureAddWishButton() {
+        view.addSubview(addWishButton)
+        
+        addWishButton.setHeight(Constants.buttonHeight)
+        addWishButton.pinBottom(to: view, Constants.buttonBottom)
+        addWishButton.pinHorizontal(to: view, Constants.buttonSide)
+        
+        addWishButton.backgroundColor = .white
+        addWishButton.setTitleColor(.systemPink, for: .normal)
+        addWishButton.setTitle(Constants.buttonText, for: .normal)
+        
+        addWishButton.layer.cornerRadius = Constants.buttonRadius
+        addWishButton.addTarget(self, action: #selector(addWishButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc
+    private func addWishButtonPressed() {
+    // this will be done later!
     }
 }
 

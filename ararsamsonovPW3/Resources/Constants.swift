@@ -13,7 +13,7 @@ enum Constants {
     static let buttonBorderWidth: CGFloat = 1
     static let backgroundColorText: UIColor = .white
     static let tintColorText: UIColor = .black
-    static let cornerRadius: CGFloat = 7
+    static let cornerRadius: CGFloat = 10
     static let borderWidth: CGFloat = 2
     
     // MARK: - Layout Spacing
@@ -22,11 +22,18 @@ enum Constants {
     static let descriptionTop: CGFloat = 5
     
     // MARK: - Stack Properties
-    static let stackRadius: CGFloat = 20
+    static let stackRadius: CGFloat = 10
     static let stackBorderWidth: CGFloat = 1
-    static let stackBottom: CGFloat = 0
+    static let stackBottom: CGFloat = 10
     static let stackLeading: CGFloat = 20
 
+    // MARK: - WishButtonUI
+    static let buttonHeight: CGFloat = 40
+    static let buttonBottom: CGFloat = 40
+    static let buttonSide: CGFloat = stackLeading
+    static let buttonText: String = "add wish"
+    static let buttonRadius: CGFloat = stackRadius
+    
     // MARK: - View Properties
     static let viewBackgroundColor: UIColor = .black
     static let maxAlpha: CGFloat = 1

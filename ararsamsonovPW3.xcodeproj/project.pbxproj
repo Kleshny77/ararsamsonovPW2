@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */ = {
+		235D34902D527D4100EA3593 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +24,7 @@
 		1E2E98C72CDDAD480027132B /* ararsamsonovPW3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1E2E98D72CDDAD4A0027132B /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */,
+				235D34902D527D4100EA3593 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */,
 			);
 			path = ararsamsonovPW3;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NWMHAK8G97;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ararsamsonovPW2/Info.plist;
+				INFOPLIST_FILE = ararsamsonovPW3/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -157,7 +157,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HSE.ararsamsonovPW2;
+				PRODUCT_BUNDLE_IDENTIFIER = HSE.ararsamsonovPW3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -174,7 +174,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NWMHAK8G97;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ararsamsonovPW2/Info.plist;
+				INFOPLIST_FILE = ararsamsonovPW3/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -184,7 +184,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HSE.ararsamsonovPW2;
+				PRODUCT_BUNDLE_IDENTIFIER = HSE.ararsamsonovPW3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
