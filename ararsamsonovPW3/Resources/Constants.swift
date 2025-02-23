@@ -110,6 +110,10 @@ enum Constants {
     static let valueLabelLeading: CGFloat = 10
     static let valueLabelTrailing: CGFloat = 20
     
+    // MARK: - Table Configuration
+    static let tableOffset: CGFloat = 10
+    static let tableCornerRadius: CGFloat = 10
+    
     // MARK: - Errors
     static let fatalError: String = "init(coder:) has not been implemented"
 }

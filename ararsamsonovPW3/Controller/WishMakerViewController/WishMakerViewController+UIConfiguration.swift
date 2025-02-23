@@ -149,7 +149,7 @@ extension WishMakerViewController {
     
     @objc
     private func addWishButtonPressed() {
-    // this will be done later!
+        present(WishStoringViewController(), animated: true)
     }
 }
 
