@@ -9,12 +9,12 @@ import UIKit
 
 final class CustomSlider: UIView {
     // MARK: - UI Elements
-    private var titleView = UILabel()
-    private var valueLabel = UILabel()
+    private lazy var titleView = UILabel()
+    private lazy var valueLabel = UILabel()
     
     // MARK: - Public Properties
     var valueChanged: ((Double) -> Void)?
-    var slider = UISlider()
+    lazy var slider = UISlider()
     
     // MARK: - Initializers
     init(title: String, min: Double, max: Double) {

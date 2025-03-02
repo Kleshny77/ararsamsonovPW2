@@ -9,8 +9,8 @@ import UIKit
 
 final class WishMakerViewController: UIViewController {
     // MARK: - UI Elements
-    private var isSliderStackHidden = false
-    private var currentColorMethod: ColorMethod = .random
+    private lazy var isSliderStackHidden = false
+    private lazy var currentColorMethod: ColorMethod = .random
     
     let titleLabel = UILabel()
     let descriptionLable = UILabel()

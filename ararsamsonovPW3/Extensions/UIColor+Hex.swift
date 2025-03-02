@@ -12,13 +12,13 @@ extension UIColor {
     // MARK: Initializers
     convenience init?(hex: String) {
         // MARK: Sanitize input
-        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        lazy var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if hexSanitized.hasPrefix(Constants.prefix) {
             hexSanitized.remove(at: hexSanitized.startIndex)
         }
         
         // MARK: Parse hex value
-        var rgb: UInt64 = Constants.minRgb
+        lazy var rgb: UInt64 = Constants.minRgb
         guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else { return nil }
         
         // MARK: Extract RGB components
