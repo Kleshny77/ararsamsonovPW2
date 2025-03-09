@@ -13,12 +13,18 @@ final class WrittenWishCell: UITableViewCell {
     private enum Constants {
         static let wrapColor: UIColor = .white
         static let wrapRadius: CGFloat = 16
-        static let wrapOffsetV: CGFloat = 5
+        static let wrapOffsetV: CGFloat = 3
         static let wrapOffsetH: CGFloat = 10
         static let wishLabelOffset: CGFloat = 8
     }
     
-    private let wishLabel: UILabel = UILabel()
+    private let wishLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0 
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
     
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

@@ -31,10 +31,10 @@ final class WishMakerViewController: UIViewController {
         
         configureTitle()
         configureDescription()
-        configureAddWishButton()
         configureSliders()
         configureToggleButton()
         configureMethodSelectionButton()
+        configureAddWishButton()
     }
     
     // MARK: - Action Methods
