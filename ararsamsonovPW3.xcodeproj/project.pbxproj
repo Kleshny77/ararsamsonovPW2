@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		235D34902D527D4100EA3593 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */ = {
+		2336CD482D7DC50400A6DD12 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +24,7 @@
 		1E2E98C72CDDAD480027132B /* ararsamsonovPW3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				235D34902D527D4100EA3593 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */,
+				2336CD482D7DC50400A6DD12 /* Exceptions for "ararsamsonovPW3" folder in "ararsamsonovPW3" target */,
 			);
 			path = ararsamsonovPW3;
 			sourceTree = "<group>";

@@ -13,7 +13,7 @@ final class WishMakerViewController: UIViewController {
     private lazy var currentColorMethod: ColorMethod = .random
     
     let titleLabel = UILabel()
-    let descriptionLable = UILabel()
+    let descriptionLabel = UILabel()
     let toggleButton = UIButton(type: .system)
     let methodSelectionButton = UIButton(type: .system)
     let addWishButton: UIButton = UIButton(type: .system)
@@ -27,7 +27,7 @@ final class WishMakerViewController: UIViewController {
     
     // MARK: - UI Configuration
     private final func configureUI() {
-        view.backgroundColor = Constants.viewBackgroundColor
+        view.backgroundColor = WishMakerConstants.viewBackgroundColor
         
         configureTitle()
         configureDescription()
@@ -42,46 +42,46 @@ final class WishMakerViewController: UIViewController {
     func toggleSliderStackVisibility() {
         isSliderStackHidden.toggle()
         if isSliderStackHidden {
-            UIView.animate(withDuration: Constants.animateDuration, animations: {
-                self.sliderStack.alpha = Constants.minAlpha
+            UIView.animate(withDuration: WishMakerConstants.animateDuration, animations: {
+                self.sliderStack.alpha = WishMakerConstants.minAlpha
             }) { _ in
                 self.sliderStack.isHidden = true
                 
-                let buttonText = Constants.showButtonText
+                let buttonText = WishMakerConstants.showButtonText
                 self.toggleButton.setTitle(buttonText, for: .normal)
             }
         } else {
             self.sliderStack.isHidden = false
-            self.sliderStack.alpha = Constants.minAlpha
+            self.sliderStack.alpha = WishMakerConstants.minAlpha
             
-            UIView.animate(withDuration: Constants.animateDuration, animations: {
-                self.sliderStack.alpha = Constants.maxAlpha
+            UIView.animate(withDuration: WishMakerConstants.animateDuration, animations: {
+                self.sliderStack.alpha = WishMakerConstants.maxAlpha
             }) { _ in
-                let buttonText = Constants.hideButtonText
+                let buttonText = WishMakerConstants.hideButtonText
                 self.toggleButton.setTitle(buttonText, for: .normal)
             }
         }
     }
     
     @objc func selectColorMethod() {
-        let alert = UIAlertController(title: Constants.methodSelectionButtonTitle, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: WishMakerConstants.methodSelectionButtonTitle, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: Constants.hex, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: WishMakerConstants.hex, style: .default, handler: { _ in
             self.currentColorMethod = .hex
             self.showHEXInput()
         }))
         
-        alert.addAction(UIAlertAction(title: Constants.colorPicker, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: WishMakerConstants.colorPicker, style: .default, handler: { _ in
             self.currentColorMethod = .colorPicker
             self.showColorPicker()
         }))
         
-        alert.addAction(UIAlertAction(title: Constants.randomColor, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: WishMakerConstants.randomColor, style: .default, handler: { _ in
             self.currentColorMethod = .random
             self.upgradeBackgroundColorWithCurrentMethod()
         }))
         
-        alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: WishMakerConstants.cancel, style: .cancel, handler: nil))
         
         present(alert, animated: true)
     }
@@ -99,14 +99,14 @@ final class WishMakerViewController: UIViewController {
     }
     
     private func showHEXInput() {
-        let alert = UIAlertController(title: Constants.hexColorTitle, message: Constants.hexColorMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: WishMakerConstants.hexColorTitle, message: WishMakerConstants.hexColorMessage, preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = Constants.hexColorExample
+            textField.placeholder = WishMakerConstants.hexColorExample
         }
         
-        alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: WishMakerConstants.cancel, style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: Constants.setColor, style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: WishMakerConstants.setColor, style: .default, handler: { _ in
             if let hexText = alert.textFields?.first?.text, let color = UIColor(hex: hexText) {
                 self.view.backgroundColor = color
             }

@@ -1,38 +1,87 @@
-//
-//  WishStoringViewController.swift
-//  ararsamsonovPW3
-//
-//  Created by Artem Samsonov on 13.02.2025.
-//
-
 import UIKit
-
-enum ConstantsWishStroning {
-    static let numberOfSections: Int = 2
-}
+import CoreData
 
 final class WishStoringViewController: UIViewController {
-    private let table: UITableView = UITableView(frame: .zero)
-    private var wishArray: [String] = ["Хочу сдать дз на 10"]
+
+    // MARK: - Core Data Context
+    private var context: NSManagedObjectContext {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError(WishStroningConstants.fatalError)
+        }
+        return appDelegate.persistentContainer.viewContext
+    }
     
+    // MARK: - UI Elements
+    private let table: UITableView = UITableView(frame: .zero)
+    private var wishArray: [Wish] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = WishStroningConstants.backgroundColor
+        fetchWishes()
         configureTable()
     }
     
+    // MARK: - Core Data Operations
+    private func fetchWishesRequest() -> NSFetchRequest<Wish> {
+        let request = Wish.fetchRequest()
+        request.sortDescriptors = []
+        return request
+    }
+
+    private func fetchWishes() {
+        do {
+            wishArray = try context.fetch(fetchWishesRequest())
+            if wishArray.isEmpty {
+                saveWish(text: WishStroningConstants.firstWishText)
+            }
+        } catch {
+            print("Error fetching wishes: \(error)")
+        }
+    }
+
+    private func saveWish(text: String) {
+        let wish = Wish(context: context)
+        wish.text = text
+        saveContext()
+        wishArray.append(wish)
+        table.reloadData()
+    }
+    
+    private func updateWish(at index: Int, newText: String) {
+        wishArray[index].text = newText
+        saveContext()
+        table.reloadRows(at: [IndexPath(row: index, section: 1)], with: .automatic)
+    }
+    
+    private func deleteWish(at indexPath: IndexPath) {
+        let wishToRemove = wishArray[indexPath.row]
+        context.delete(wishToRemove)
+        wishArray.remove(at: indexPath.row)
+        saveContext()
+        table.deleteRows(at: [indexPath], with: .automatic)
+    }
+
+    private func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+    }
+    
+    // MARK: - UI Configuration
     private func configureTable() {
         view.addSubview(table)
-        table.backgroundColor = .darkGray
+        
+        table.backgroundColor = WishStroningConstants.backgroundColor
+        table.separatorStyle = WishStroningConstants.separatorStyle
+        table.layer.cornerRadius = WishStroningConstants.tableCornerRadius
+        
         table.dataSource = self
         table.delegate = self
-        table.separatorStyle = .singleLine
-        table.layer.cornerRadius = Constants.tableCornerRadius
         
-        table.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        table.pinRight(to: view.safeAreaLayoutGuide.trailingAnchor)
-        table.pinLeft(to: view.safeAreaLayoutGuide.leadingAnchor)
-        table.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        table.pin(to: view.safeAreaLayoutGuide)
         
         table.register(WrittenWishCell.self, forCellReuseIdentifier: WrittenWishCell.reuseId)
         table.register(AddWishCell.self, forCellReuseIdentifier: AddWishCell.reuseId)
@@ -41,88 +90,89 @@ final class WishStoringViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 extension WishStoringViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        WishStroningConstants.numberOfSections
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return wishArray.count
-        default:
-            return 0
-        }
+        section == WishStroningConstants.indexOfFirstSection ? 1 : wishArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddWishCell.reuseId, for: indexPath)
-            guard let addCell = cell as? AddWishCell else { return cell }
-            
-            addCell.addWish = { [weak self] wish in
-                self?.wishArray.append(wish)
-                self?.table.reloadData()
+        case WishStroningConstants.indexOfFirstSection:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddWishCell.reuseId, for: indexPath) as! AddWishCell
+            cell.addWish = { [weak self] wishText in
+                self?.saveWish(text: wishText)
             }
+            return cell
 
-            return addCell
-
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: WrittenWishCell.reuseId, for: indexPath)
-            guard let wishCell = cell as? WrittenWishCell else { return cell }
-            wishCell.configure(with: wishArray[indexPath.row])
-            return wishCell
-
+        case WishStroningConstants.indexOfSecondSection:
+            let cell = tableView.dequeueReusableCell(withIdentifier: WrittenWishCell.reuseId, for: indexPath) as! WrittenWishCell
+            cell.configure(with: wishArray[indexPath.row].text ?? "")
+            return cell
         default:
             return UITableViewCell()
         }
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return ConstantsWishStroning.numberOfSections
-    }
 }
 
+// MARK: - UITableViewDelegate
 extension WishStoringViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard section == 0 else { return nil }
-        let footerView = UIView()
-        footerView.backgroundColor = .clear
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        indexPath.section == WishStroningConstants.indexOfFirstSection ? WishStroningConstants.firstSectionHeight : UITableView.automaticDimension
+    }
 
-        return footerView
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return WishStroningConstants.estimatedRowHeight
     }
     
+    // MARK: Footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == 0 ? 10 : 0
+        section == WishStroningConstants.indexOfFirstSection ? WishStroningConstants.footerHeight : WishStroningConstants.footerHeightDefault
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete && indexPath.section == 1 {
-//            wishArray.remove(at: indexPath.row) // Удаляем запись из массива
-//            tableView.deleteRows(at: [indexPath], with: .automatic) // Анимированно удаляем строку
-//        }
-//    }
-    
+    // MARK: Edit Actions
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            guard indexPath.section == 1 else { return nil } // Только для второй секции
-            
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
-                self?.wishArray.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                completionHandler(true)
-            }
-            
-            // ❗ Настроим цвет и стиль кнопки
-            deleteAction.backgroundColor = .clear // Делаем фон прозрачным
-            
-            let customView = UIView(frame: CGRect(x: 0, y: 0, width: 88, height: tableView.rowHeight))
-            customView.backgroundColor = .red
-            customView.layer.cornerRadius = 10 // Закругление углов
-//            deleteAction.image = customView.asImage() // Конвертируем UIView в картинку
-            
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+        guard indexPath.section == WishStroningConstants.indexOfSecondSection else { return nil }
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: WishStroningConstants.deleteButtonTitle) { [weak self] _, _, completionHandler in
+            self?.deleteWish(at: indexPath)
+            completionHandler(true)
         }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 1 // Разрешаем редактирование только для секции 1
+        deleteAction.image = UIImage(systemName: WishStroningConstants.trashIconName)
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard indexPath.section == WishStroningConstants.indexOfSecondSection else { return nil }
+        
+        let editAction = UIContextualAction(style: .normal, title: WishStroningConstants.editButtonTitle) { [weak self] _, _, completion in
+            self?.showEditWishAlert(at: indexPath)
+            completion(true)
+        }
+
+        editAction.backgroundColor = WishStroningConstants.editBackgroundColor
+        editAction.image = UIImage(systemName: WishStroningConstants.editIconName)
+
+        return UISwipeActionsConfiguration(actions: [editAction])
+    }
+
+    // MARK: Editing Alert
+    private func showEditWishAlert(at indexPath: IndexPath) {
+        let alert = UIAlertController(title: WishStroningConstants.editAlertTitle, message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.text = self.wishArray[indexPath.row].text
+        }
+        alert.addAction(UIAlertAction(title: WishStroningConstants.cancelButtonTitle, style: .cancel))
+        alert.addAction(UIAlertAction(title: WishStroningConstants.saveButtonTitle, style: .default) { [weak self] _ in
+            guard let newText = alert.textFields?.first?.text, !newText.isEmpty else { return }
+            self?.updateWish(at: indexPath.row, newText: newText)
+        })
+
+        present(alert, animated: true)
     }
 }

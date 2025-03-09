@@ -13,20 +13,20 @@ extension UIColor {
     convenience init?(hex: String) {
         // MARK: Sanitize input
         lazy var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if hexSanitized.hasPrefix(Constants.prefix) {
+        if hexSanitized.hasPrefix(ExtensionsConstants.prefixHex) {
             hexSanitized.remove(at: hexSanitized.startIndex)
         }
         
         // MARK: Parse hex value
-        lazy var rgb: UInt64 = Constants.minRgb
+        lazy var rgb: UInt64 = ExtensionsConstants.minRgb
         guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else { return nil }
         
         // MARK: Extract RGB components
-        let red = CGFloat((rgb >> Constants.shiftRed) & Constants.mask) / Constants.divisor
-        let green = CGFloat((rgb >> Constants.shiftGreen) & Constants.mask) / Constants.divisor
-        let blue = CGFloat(rgb & Constants.mask) / Constants.divisor
+        let red = CGFloat((rgb >> ExtensionsConstants.shiftRed) & ExtensionsConstants.mask) / ExtensionsConstants.divisor
+        let green = CGFloat((rgb >> ExtensionsConstants.shiftGreen) & ExtensionsConstants.mask) / ExtensionsConstants.divisor
+        let blue = CGFloat(rgb & ExtensionsConstants.mask) / ExtensionsConstants.divisor
         
         // MARK: Initialize UIColor
-        self.init(red: red, green: green, blue: blue, alpha: Constants.maxAlpha)
+        self.init(red: red, green: green, blue: blue, alpha: ExtensionsConstants.maxAlpha)
     }
 }

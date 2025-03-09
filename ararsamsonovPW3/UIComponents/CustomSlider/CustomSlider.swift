@@ -21,24 +21,24 @@ final class CustomSlider: UIView {
         super.init(frame: .zero)
         
         titleView.text = title
-        titleView.font = UIFont.boldSystemFont(ofSize: Constants.sliderTextSize)
+        titleView.font = UIFont.boldSystemFont(ofSize: CustomSliderConstants.textFontSize)
         
         slider.minimumValue = Float(min)
         slider.maximumValue = Float(max)
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         
-        valueLabel.text = String(format: Constants.format, min)
+        valueLabel.text = String(format: CustomSliderConstants.valueLabelFormat, min)
         configureUI()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError(Constants.fatalError)
+        fatalError(CustomSliderConstants.fatalError)
     }
     
     // MARK: - UI Configuration
     private func configureUI() {
-        backgroundColor = Constants.backgroundColorSlider
+        backgroundColor = CustomSliderConstants.backgroundColorSlider
         translatesAutoresizingMaskIntoConstraints = false
         
         for view in [slider, titleView, valueLabel] {
@@ -46,16 +46,16 @@ final class CustomSlider: UIView {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        titleView.pinTop(to: topAnchor, Constants.titleViewTop)
-        titleView.pinLeft(to: leadingAnchor, Constants.titleViewLeading)
+        titleView.pinTop(to: topAnchor, CustomSliderConstants.titleViewOffsetTop)
+        titleView.pinLeft(to: leadingAnchor, CustomSliderConstants.titleViewOffsetLeft)
         
         slider.pinTop(to: titleView.bottomAnchor)
-        slider.pinBottom(to: bottomAnchor, Constants.sliderBottom)
-        slider.pinLeft(to: leadingAnchor, Constants.sliderLeading)
-        slider.pinRight(to: trailingAnchor, Constants.sliderTrailing)
+        slider.pinBottom(to: bottomAnchor, CustomSliderConstants.sliderOffsetBottom)
+        slider.pinLeft(to: leadingAnchor, CustomSliderConstants.sliderOffsetLeft)
+        slider.pinRight(to: trailingAnchor, CustomSliderConstants.sliderOffsetRight)
         
-        valueLabel.pinTop(to: topAnchor, Constants.valueLabelTop)
-        valueLabel.pinLeft(to: titleView.trailingAnchor, Constants.valueLabelTrailing)
+        valueLabel.pinTop(to: topAnchor, CustomSliderConstants.valueLabelOffsetTop)
+        valueLabel.pinLeft(to: titleView.trailingAnchor, CustomSliderConstants.valueLabelOffsetTop)
         valueLabel.pinCenterY(to: titleView.centerYAnchor)
     }
     
@@ -63,8 +63,8 @@ final class CustomSlider: UIView {
     @objc
     private func sliderValueChanged() {
         let currentValue = Double(slider.value)
-        valueLabel.text = String(format: Constants.format, currentValue)
-        valueLabel.font = UIFont.systemFont(ofSize: Constants.sliderTextSize)
+        valueLabel.text = String(format: CustomSliderConstants.valueLabelFormat, currentValue)
+        valueLabel.font = UIFont.systemFont(ofSize: CustomSliderConstants.sliderTextFontSize)
         valueChanged?(Double(slider.value))
     }
 }

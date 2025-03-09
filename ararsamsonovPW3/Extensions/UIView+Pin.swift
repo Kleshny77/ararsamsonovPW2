@@ -228,6 +228,16 @@ extension UIView {
         pinVertical(to: otherView, const)
         pinHorizontal(to: otherView, const)
     }
+    
+    func pin(to layoutGuide: UILayoutGuide, _ const: CGFloat = 0) {
+            translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: const),
+                bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -const),
+                leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: const),
+                trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -const)
+            ])
+        }
 
     // MARK: - Private methods
     @discardableResult

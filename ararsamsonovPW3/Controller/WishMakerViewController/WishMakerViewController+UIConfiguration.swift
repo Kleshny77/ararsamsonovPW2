@@ -10,20 +10,18 @@ import UIKit
 extension WishMakerViewController {
     // MARK: - Title Configuration
     final func configureTitle() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = WishMakerConstants.titleLabelText
+        titleLabel.font = UIFont.boldSystemFont(ofSize: WishMakerConstants.titleLabelFontSize)
         
-        titleLabel.text = Constants.titleText
-        titleLabel.font = UIFont.boldSystemFont(ofSize: Constants.titleFontSize)
+        titleLabel.backgroundColor = WishMakerConstants.labelBackgroundColor
+        titleLabel.tintColor = WishMakerConstants.labelTintColor
         
-        titleLabel.backgroundColor = Constants.backgroundColorText
-        titleLabel.tintColor = Constants.tintColorText
-        
-        titleLabel.layer.cornerRadius = Constants.cornerRadius
+        titleLabel.layer.cornerRadius = WishMakerConstants.labelCornerRadius
         titleLabel.layer.masksToBounds = true
-        titleLabel.layer.borderWidth = Constants.borderWidth
+        titleLabel.layer.borderWidth = WishMakerConstants.labelBorderWidth
         
-        titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.titleLabelWidthAnchor).isActive = true
-        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.titleLabelHeightAnchor).isActive = true
+        titleLabel.setWidth(WishMakerConstants.titleLabelWidth)
+        titleLabel.setHeight(WishMakerConstants.titleLabelHeight)
         titleLabel.textAlignment = .center
         
         view.addSubview(titleLabel)
@@ -33,78 +31,75 @@ extension WishMakerViewController {
     
     // MARK: - Description Configuration
     final func configureDescription() {
-        descriptionLable.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.text = WishMakerConstants.descriptionText
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: WishMakerConstants.descriptionFontSize)
         
-        descriptionLable.text = Constants.descriptionText
-        descriptionLable.font = UIFont.boldSystemFont(ofSize: Constants.descriptionFontSize)
+        descriptionLabel.backgroundColor = WishMakerConstants.labelBackgroundColor
+        descriptionLabel.textColor = WishMakerConstants.labelTintColor
         
-        descriptionLable.backgroundColor = Constants.backgroundColorText
-        descriptionLable.textColor = Constants.tintColorText
+        descriptionLabel.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        descriptionLabel.layer.masksToBounds = true
+        descriptionLabel.layer.borderWidth = WishMakerConstants.labelBorderWidth
         
-        descriptionLable.layer.cornerRadius = Constants.cornerRadius
-        descriptionLable.layer.masksToBounds = true
-        descriptionLable.layer.borderWidth = Constants.borderWidth
+        descriptionLabel.setWidth(WishMakerConstants.descriptionLabelWidth)
+        descriptionLabel.setHeight(WishMakerConstants.descriptionLabelHeight)
+        descriptionLabel.textAlignment = .center
         
-        descriptionLable.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.descriptionLableWidthAnchor).isActive = true
-        descriptionLable.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.descriptionLableHeightAnchor).isActive = true
-        descriptionLable.textAlignment = .center
-        
-        view.addSubview(descriptionLable)
-        descriptionLable.pinCenterX(to: view)
-        descriptionLable.pinTop(to: titleLabel.bottomAnchor, Constants.descriptionTop)
+        view.addSubview(descriptionLabel)
+        descriptionLabel.pinCenterX(to: view)
+        descriptionLabel.pinTop(to: titleLabel.bottomAnchor, WishMakerConstants.labelDistance)
     }
     
     // MARK: - Selection Button Configuration
     final func configureMethodSelectionButton() {
-        methodSelectionButton.translatesAutoresizingMaskIntoConstraints = false
-        methodSelectionButton.setTitle(Constants.methodSelectionButtonTitle, for: .normal)
+        methodSelectionButton.setTitle(WishMakerConstants.methodSelectionButtonTitle, for: .normal)
         methodSelectionButton.addTarget(self, action: #selector(selectColorMethod), for: .touchUpInside)
         
-        methodSelectionButton.backgroundColor = Constants.backgroundColorText
-        methodSelectionButton.tintColor = Constants.tintColorText
+        methodSelectionButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+        methodSelectionButton.tintColor = WishMakerConstants.buttonTitleColor
         
-        methodSelectionButton.layer.cornerRadius = Constants.cornerRadius
-        methodSelectionButton.layer.borderWidth = Constants.buttonBorderWidth
+        methodSelectionButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        methodSelectionButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
         
-        methodSelectionButton.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.methodSelectionButtonWidthAnchor).isActive = true
-        methodSelectionButton.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.methodSelectionButtonHeightAnchor).isActive = true
+        methodSelectionButton.setWidth(WishMakerConstants.selectColorMethodButtonWidth)
+        methodSelectionButton.setHeight(WishMakerConstants.labelHeight)
         
         view.addSubview(methodSelectionButton)
         methodSelectionButton.pinCenterX(to: view)
-        methodSelectionButton.pinTop(to: descriptionLable.bottomAnchor, Constants.methodSelectionButtonTop)
+        methodSelectionButton.pinTop(to: descriptionLabel.bottomAnchor, WishMakerConstants.labelDistance)
     }
     
     final func configureAddWishButton() {
         view.addSubview(addWishButton)
         
-        addWishButton.setHeight(Constants.buttonHeight)
         addWishButton.pinCenterX(to: view)
-        addWishButton.setWidth(100)
-        addWishButton.setHeight(Constants.methodSelectionButtonHeightAnchor)
-        addWishButton.pinBottom(to: toggleButton.topAnchor, 5)
+        addWishButton.setWidth(WishMakerConstants.addWishButtonWidth)
+        addWishButton.setHeight(WishMakerConstants.labelHeight)
+        addWishButton.pinBottom(to: toggleButton.topAnchor, WishMakerConstants.labelDistance)
         
-        addWishButton.backgroundColor = .white
-        addWishButton.setTitleColor(.systemPink, for: .normal)
-        addWishButton.setTitle(Constants.buttonText, for: .normal)
+        addWishButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+        addWishButton.setTitleColor(WishMakerConstants.buttonTitleColor, for: .normal)
+        addWishButton.setTitle(WishMakerConstants.addWishButtonTitle, for: .normal)
         
-        addWishButton.layer.cornerRadius = Constants.buttonRadius
+        addWishButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        addWishButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
+        
         addWishButton.addTarget(self, action: #selector(addWishButtonPressed), for: .touchUpInside)
     }
     
     // MARK: - Toggle Button Configuration
     final func configureToggleButton() {
-        toggleButton.translatesAutoresizingMaskIntoConstraints = false
-        toggleButton.setTitle(Constants.toggleButtonText, for: .normal)
+        toggleButton.setTitle(WishMakerConstants.toggleButtonTitle, for: .normal)
         toggleButton.addTarget(self, action: #selector(toggleSliderStackVisibility), for: .touchUpInside)
         
-        toggleButton.backgroundColor = Constants.backgroundColorText
-        toggleButton.tintColor = Constants.tintColorText
+        toggleButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+        toggleButton.tintColor = WishMakerConstants.buttonTitleColor
         
-        toggleButton.layer.cornerRadius = Constants.cornerRadius
-        toggleButton.layer.borderWidth = Constants.buttonBorderWidth
+        toggleButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        toggleButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
         
-        toggleButton.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.toggleButtonWidthAnchor).isActive = true
-        toggleButton.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.toggleButtonHeightAnchor).isActive = true
+        toggleButton.setWidth(WishMakerConstants.toggleLabelWidth)
+        toggleButton.setHeight(WishMakerConstants.labelHeight)
 
         view.addSubview(toggleButton)
         toggleButton.pinCenterX(to: view)
@@ -113,16 +108,15 @@ extension WishMakerViewController {
     
     // MARK: - Slider Stack Configuration
     final func configureSliders() {
-        sliderStack.translatesAutoresizingMaskIntoConstraints = false
         sliderStack.axis = .vertical
         view.addSubview(sliderStack)
-        sliderStack.layer.cornerRadius = Constants.stackRadius
+        sliderStack.layer.cornerRadius = WishMakerConstants.labelCornerRadius
         sliderStack.clipsToBounds = true
-        sliderStack.layer.borderWidth = Constants.stackBorderWidth
+        sliderStack.layer.borderWidth = WishMakerConstants.labelBorderWidth
         
-        let sliderRed = CustomSlider(title: Constants.red, min: Constants.sliderMin, max: Constants.sliderMax)
-        let sliderGreen = CustomSlider(title: Constants.green, min: Constants.sliderMin, max: Constants.sliderMax)
-        let sliderBlue = CustomSlider(title: Constants.blue, min: Constants.sliderMin, max: Constants.sliderMax)
+        let sliderRed = CustomSlider(title: WishMakerConstants.red, min: WishMakerConstants.minValueUIColor, max: WishMakerConstants.maxValueUIColor)
+        let sliderGreen = CustomSlider(title: WishMakerConstants.green, min: WishMakerConstants.minValueUIColor, max: WishMakerConstants.maxValueUIColor)
+        let sliderBlue = CustomSlider(title: WishMakerConstants.blue, min: WishMakerConstants.minValueUIColor, max: WishMakerConstants.maxValueUIColor)
         
         sliderRed.tintColor = .red
         sliderGreen.tintColor = .green
@@ -132,9 +126,9 @@ extension WishMakerViewController {
             sliderStack.addArrangedSubview(slider)
         }
         
-        sliderStack.pinLeft(to: view.safeAreaLayoutGuide.leadingAnchor, Constants.stackLeading)
-        sliderStack.pinRight(to: view.safeAreaLayoutGuide.trailingAnchor, Constants.stackLeading)
-        sliderStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, Constants.stackBottom)
+        sliderStack.pinLeft(to: view.safeAreaLayoutGuide.leadingAnchor, WishMakerConstants.sliderStackOffset)
+        sliderStack.pinRight(to: view.safeAreaLayoutGuide.trailingAnchor, WishMakerConstants.sliderStackOffset)
+        sliderStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, WishMakerConstants.sliderStackBottom)
         
         sliderRed.valueChanged = { [weak self] value in
             self?.upgradeBackgroundColor(red: value, green: Double(sliderGreen.slider.value), blue: Double(sliderBlue.slider.value))
