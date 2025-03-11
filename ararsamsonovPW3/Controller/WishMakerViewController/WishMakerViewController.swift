@@ -17,7 +17,10 @@ final class WishMakerViewController: UIViewController {
     let toggleButton = UIButton(type: .system)
     let methodSelectionButton = UIButton(type: .system)
     let addWishButton: UIButton = UIButton(type: .system)
+    let addMoreWishesButton: UIButton = UIButton(type: .system)
+    let scheduleWishesButton: UIButton = UIButton(type: .system)
     let sliderStack = UIStackView()
+    let actionStack = UIStackView()
        
     // MARK: - Lifecycle Methods
     override final func viewDidLoad() {

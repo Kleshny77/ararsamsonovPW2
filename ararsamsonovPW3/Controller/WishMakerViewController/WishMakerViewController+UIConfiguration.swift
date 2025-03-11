@@ -143,6 +143,47 @@ extension WishMakerViewController {
         }
     }
     
+    final private func configureActionStack() {
+        actionStack.axis = .vertical
+        view.addSubview(actionStack)
+        actionStack.spacing = WishMakerConstants.spacing
+        for button in [addMoreWishesButton, scheduleWishesButton] {
+            actionStack.addArrangedSubview(button)
+        }
+        configureAddMoreWishes()
+        configureScheduleMissions()
+        actionStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, WishMakerConstants.stackBottom)
+        actionStack.pinHorizontal(to: view, WishMakerConstants.stackOffsetH)
+    }
+    
+    final private func configureAddMoreWishes() {
+        // ToDo
+    }
+    
+    final private func configureScheduleMissions() {
+        scheduleWishesButton.setTitle(WishMakerConstants.scheduleWishesButtonTitle, for: .normal)
+        scheduleWishesButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+        scheduleWishesButton.tintColor = WishMakerConstants.buttonTitleColor
+    }
+    
+//    final func configureToggleButton() {
+//        toggleButton.setTitle(WishMakerConstants.toggleButtonTitle, for: .normal)
+//        toggleButton.addTarget(self, action: #selector(toggleSliderStackVisibility), for: .touchUpInside)
+//        
+//        toggleButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+//        toggleButton.tintColor = WishMakerConstants.buttonTitleColor
+//        
+//        toggleButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+//        toggleButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
+//        
+//        toggleButton.setWidth(WishMakerConstants.toggleLabelWidth)
+//        toggleButton.setHeight(WishMakerConstants.labelHeight)
+//
+//        view.addSubview(toggleButton)
+//        toggleButton.pinCenterX(to: view)
+//        toggleButton.pinBottom(to: sliderStack.topAnchor, 5)
+//    }
+    
     @objc
     private func addWishButtonPressed() {
         present(WishStoringViewController(), animated: true)
