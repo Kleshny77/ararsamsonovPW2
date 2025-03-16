@@ -13,7 +13,7 @@ final class WishStoringViewController: UIViewController {
     
     // MARK: - UI Elements
     private let table: UITableView = UITableView(frame: .zero)
-    private var wishArray: [Wish] = []
+    private lazy var wishArray: [Wish] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

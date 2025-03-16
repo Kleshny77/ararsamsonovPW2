@@ -38,6 +38,7 @@ final class WishMakerViewController: UIViewController {
         configureToggleButton()
         configureMethodSelectionButton()
         configureAddWishButton()
+        configureActionStack()
     }
     
     // MARK: - Action Methods

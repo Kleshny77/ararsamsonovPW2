@@ -128,7 +128,6 @@ extension WishMakerViewController {
         
         sliderStack.pinLeft(to: view.safeAreaLayoutGuide.leadingAnchor, WishMakerConstants.sliderStackOffset)
         sliderStack.pinRight(to: view.safeAreaLayoutGuide.trailingAnchor, WishMakerConstants.sliderStackOffset)
-        sliderStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, WishMakerConstants.sliderStackBottom)
         
         sliderRed.valueChanged = { [weak self] value in
             self?.upgradeBackgroundColor(red: value, green: Double(sliderGreen.slider.value), blue: Double(sliderBlue.slider.value))
@@ -143,7 +142,7 @@ extension WishMakerViewController {
         }
     }
     
-    final private func configureActionStack() {
+    final func configureActionStack() {
         actionStack.axis = .vertical
         view.addSubview(actionStack)
         actionStack.spacing = WishMakerConstants.spacing
@@ -152,40 +151,51 @@ extension WishMakerViewController {
         }
         configureAddMoreWishes()
         configureScheduleMissions()
+        actionStack.pinTop(to: sliderStack.bottomAnchor, WishMakerConstants.sliderStackBottom)
         actionStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, WishMakerConstants.stackBottom)
         actionStack.pinHorizontal(to: view, WishMakerConstants.stackOffsetH)
     }
     
     final private func configureAddMoreWishes() {
-        // ToDo
+        addMoreWishesButton.setTitle(WishMakerConstants.addMoreWishesButtonTitle, for: .normal)
+        
+        addMoreWishesButton.backgroundColor = WishMakerConstants.labelBackgroundColor
+        addMoreWishesButton.tintColor = WishMakerConstants.buttonTitleColor
+        
+        addMoreWishesButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        addMoreWishesButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
+        
+        addMoreWishesButton.setHeight(WishMakerConstants.labelHeight)
+        
+        addMoreWishesButton.addTarget(self, action: #selector(addMoreWishesButtonPressed), for: .touchUpInside)
     }
     
     final private func configureScheduleMissions() {
         scheduleWishesButton.setTitle(WishMakerConstants.scheduleWishesButtonTitle, for: .normal)
+        
         scheduleWishesButton.backgroundColor = WishMakerConstants.labelBackgroundColor
         scheduleWishesButton.tintColor = WishMakerConstants.buttonTitleColor
+        
+        scheduleWishesButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
+        scheduleWishesButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
+        
+        scheduleWishesButton.setHeight(WishMakerConstants.labelHeight)
+        
+        scheduleWishesButton.addTarget(self, action: #selector(scheduleWishesButtonPressed), for: .touchUpInside)
     }
     
-//    final func configureToggleButton() {
-//        toggleButton.setTitle(WishMakerConstants.toggleButtonTitle, for: .normal)
-//        toggleButton.addTarget(self, action: #selector(toggleSliderStackVisibility), for: .touchUpInside)
-//        
-//        toggleButton.backgroundColor = WishMakerConstants.labelBackgroundColor
-//        toggleButton.tintColor = WishMakerConstants.buttonTitleColor
-//        
-//        toggleButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
-//        toggleButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
-//        
-//        toggleButton.setWidth(WishMakerConstants.toggleLabelWidth)
-//        toggleButton.setHeight(WishMakerConstants.labelHeight)
-//
-//        view.addSubview(toggleButton)
-//        toggleButton.pinCenterX(to: view)
-//        toggleButton.pinBottom(to: sliderStack.topAnchor, 5)
-//    }
+    @objc
+    final private func addWishButtonPressed() {
+        present(WishStoringViewController(), animated: true)
+    }
     
     @objc
-    private func addWishButtonPressed() {
-        present(WishStoringViewController(), animated: true)
+    final private func addMoreWishesButtonPressed() {
+        // ToDo
+    }
+    
+    @objc
+    final private func scheduleWishesButtonPressed() {
+        // ToDo
     }
 }

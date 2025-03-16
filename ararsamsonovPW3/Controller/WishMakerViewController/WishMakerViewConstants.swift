@@ -76,8 +76,11 @@ enum WishMakerConstants {
     // MARK: - Action Stack
     static let spacing: CGFloat = 10
     static let stackBottom: CGFloat = 5
-    static let stackOffsetH: CGFloat = 5
+    static let stackOffsetH: CGFloat = 20
     
     // MARK: - Schedule Wishes Button
-    static let scheduleWishesButtonTitle: String = "scheduleWishesButton"
+    static let scheduleWishesButtonTitle: String = "Schedule wishes granting"
+    
+    // MARK: - Add More Wishes Button
+    static let addMoreWishesButtonTitle: String = "Add more wishes"
 }
