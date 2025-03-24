@@ -23,13 +23,13 @@ final class WishStoringViewController: UIViewController {
     }
     
     // MARK: - Core Data Operations
-    private func fetchWishesRequest() -> NSFetchRequest<Wish> {
+    private final func fetchWishesRequest() -> NSFetchRequest<Wish> {
         let request = Wish.fetchRequest()
         request.sortDescriptors = []
         return request
     }
 
-    private func fetchWishes() {
+    private final func fetchWishes() {
         do {
             wishArray = try context.fetch(fetchWishesRequest())
             if wishArray.isEmpty {
@@ -40,7 +40,7 @@ final class WishStoringViewController: UIViewController {
         }
     }
 
-    private func saveWish(text: String) {
+    private final func saveWish(text: String) {
         let wish = Wish(context: context)
         wish.text = text
         saveContext()
@@ -48,13 +48,13 @@ final class WishStoringViewController: UIViewController {
         table.reloadData()
     }
     
-    private func updateWish(at index: Int, newText: String) {
+    private final func updateWish(at index: Int, newText: String) {
         wishArray[index].text = newText
         saveContext()
         table.reloadRows(at: [IndexPath(row: index, section: 1)], with: .automatic)
     }
     
-    private func deleteWish(at indexPath: IndexPath) {
+    private final func deleteWish(at indexPath: IndexPath) {
         let wishToRemove = wishArray[indexPath.row]
         context.delete(wishToRemove)
         wishArray.remove(at: indexPath.row)
@@ -62,7 +62,7 @@ final class WishStoringViewController: UIViewController {
         table.deleteRows(at: [indexPath], with: .automatic)
     }
 
-    private func saveContext() {
+    private final func saveContext() {
         do {
             try context.save()
         } catch {
@@ -71,7 +71,7 @@ final class WishStoringViewController: UIViewController {
     }
     
     // MARK: - UI Configuration
-    private func configureTable() {
+    private final func configureTable() {
         view.addSubview(table)
         
         table.backgroundColor = WishStroningConstants.backgroundColor
@@ -91,15 +91,15 @@ final class WishStoringViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension WishStoringViewController: UITableViewDataSource {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    final func numberOfSections(in tableView: UITableView) -> Int {
         WishStroningConstants.numberOfSections
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    final func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         section == WishStroningConstants.indexOfFirstSection ? 1 : wishArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case WishStroningConstants.indexOfFirstSection:
             let cell = tableView.dequeueReusableCell(withIdentifier: AddWishCell.reuseId, for: indexPath) as! AddWishCell
@@ -121,21 +121,21 @@ extension WishStoringViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension WishStoringViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    final func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.section == WishStroningConstants.indexOfFirstSection ? WishStroningConstants.firstSectionHeight : UITableView.automaticDimension
     }
 
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    final func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return WishStroningConstants.estimatedRowHeight
     }
     
     // MARK: Footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    final func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         section == WishStroningConstants.indexOfFirstSection ? WishStroningConstants.footerHeight : WishStroningConstants.footerHeightDefault
     }
     
     // MARK: Edit Actions
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    final func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.section == WishStroningConstants.indexOfSecondSection else { return nil }
         
         let deleteAction = UIContextualAction(style: .destructive, title: WishStroningConstants.deleteButtonTitle) { [weak self] _, _, completionHandler in
@@ -147,7 +147,7 @@ extension WishStoringViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    final func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.section == WishStroningConstants.indexOfSecondSection else { return nil }
         
         let editAction = UIContextualAction(style: .normal, title: WishStroningConstants.editButtonTitle) { [weak self] _, _, completion in
@@ -162,7 +162,7 @@ extension WishStoringViewController: UITableViewDelegate {
     }
 
     // MARK: Editing Alert
-    private func showEditWishAlert(at indexPath: IndexPath) {
+    private final func showEditWishAlert(at indexPath: IndexPath) {
         let alert = UIAlertController(title: WishStroningConstants.editAlertTitle, message: nil, preferredStyle: .alert)
         alert.addTextField { textField in
             textField.text = self.wishArray[indexPath.row].text

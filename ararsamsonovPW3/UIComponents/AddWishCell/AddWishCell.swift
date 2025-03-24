@@ -47,12 +47,12 @@ final class AddWishCell: UITableViewCell {
     }
     
     // MARK: - Configuration
-    func configure(with wish: String) {
+    private final func configure(with wish: String) {
         wishTextView.text = wish
     }
     
     // MARK: - UI Setup
-    private func configureUI() {
+    private final func configureUI() {
         selectionStyle = .none
         backgroundColor = .clear
         
@@ -79,7 +79,8 @@ final class AddWishCell: UITableViewCell {
     }
     
     // MARK: - Actions
-    @objc private func addWishPressed() {
+    @objc
+    private final func addWishPressed() {
         guard let text = wishTextView.text, !text.isEmpty else { return }
         UIView.animate(withDuration: AddWishCellConstants.anumateDuration, animations: {
             self.button.tintColor = AddWishCellConstants.anumateColorTintFirst

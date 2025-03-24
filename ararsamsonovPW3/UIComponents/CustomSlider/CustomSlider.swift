@@ -37,7 +37,7 @@ final class CustomSlider: UIView {
     }
     
     // MARK: - UI Configuration
-    private func configureUI() {
+    private final func configureUI() {
         backgroundColor = CustomSliderConstants.backgroundColorSlider
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -61,7 +61,7 @@ final class CustomSlider: UIView {
     
     // MARK: - Action Methods
     @objc
-    private func sliderValueChanged() {
+    private final func sliderValueChanged() {
         let currentValue = Double(slider.value)
         valueLabel.text = String(format: CustomSliderConstants.valueLabelFormat, currentValue)
         valueLabel.font = UIFont.systemFont(ofSize: CustomSliderConstants.sliderTextFontSize)

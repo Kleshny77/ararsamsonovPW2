@@ -30,11 +30,11 @@ final class WrittenWishCell: UITableViewCell {
         fatalError(WrittenWishCellConstants.fatalError)
     }
     
-    func configure(with wish: String) {
+    final func configure(with wish: String) {
         wishLabel.text = wish
     }
     
-    private func configureUI() {
+    private final func configureUI() {
         selectionStyle = .none
         backgroundColor = .clear
         let wrap: UIView = UIView()

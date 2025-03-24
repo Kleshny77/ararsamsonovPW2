@@ -10,10 +10,13 @@ import UIKit
 extension WishMakerViewController: UIColorPickerViewControllerDelegate {
     // MARK: - Background Color Management
     final func upgradeBackgroundColor(red: Double, green: Double, blue: Double) {
-        let redColor = CGFloat(red)
-        let greenColor = CGFloat(green)
-        let blueColor = CGFloat(blue)
-        self.view.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: WishMakerConstants.maxAlpha)
+        let color = UIColor(
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: WishMakerConstants.maxAlpha
+        )
+        self.colors = color
     }
     
     final func getUniqueColors() -> UIColor {
@@ -27,8 +30,8 @@ extension WishMakerViewController: UIColorPickerViewControllerDelegate {
     }
     
     // MARK: - UIColorPickerViewControllerDelegate
-    func colorPickerViewControllerDidSelectColor(_ colorPicker: UIColorPickerViewController) {
-        self.view.backgroundColor = colorPicker.selectedColor
+    final func colorPickerViewControllerDidSelectColor(_ colorPicker: UIColorPickerViewController) {
+        self.colors = colorPicker.selectedColor
     }
     
     enum ColorMethod {

@@ -78,7 +78,6 @@ extension WishMakerViewController {
         addWishButton.pinBottom(to: toggleButton.topAnchor, WishMakerConstants.labelDistance)
         
         addWishButton.backgroundColor = WishMakerConstants.labelBackgroundColor
-        addWishButton.setTitleColor(WishMakerConstants.buttonTitleColor, for: .normal)
         addWishButton.setTitle(WishMakerConstants.addWishButtonTitle, for: .normal)
         
         addWishButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
@@ -182,20 +181,5 @@ extension WishMakerViewController {
         scheduleWishesButton.setHeight(WishMakerConstants.labelHeight)
         
         scheduleWishesButton.addTarget(self, action: #selector(scheduleWishesButtonPressed), for: .touchUpInside)
-    }
-    
-    @objc
-    final private func addWishButtonPressed() {
-        present(WishStoringViewController(), animated: true)
-    }
-    
-    @objc
-    final private func addMoreWishesButtonPressed() {
-        // ToDo
-    }
-    
-    @objc
-    final private func scheduleWishesButtonPressed() {
-        // ToDo
     }
 }
