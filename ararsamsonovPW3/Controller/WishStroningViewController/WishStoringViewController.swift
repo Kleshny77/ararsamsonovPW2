@@ -41,8 +41,11 @@ final class WishStoringViewController: UIViewController {
     }
 
     private final func saveWish(text: String) {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+
         let wish = Wish(context: context)
-        wish.text = text
+        wish.text = trimmed
         saveContext()
         wishArray.append(wish)
         table.reloadData()
@@ -169,8 +172,11 @@ extension WishStoringViewController: UITableViewDelegate {
         }
         alert.addAction(UIAlertAction(title: WishStroningConstants.cancelButtonTitle, style: .cancel))
         alert.addAction(UIAlertAction(title: WishStroningConstants.saveButtonTitle, style: .default) { [weak self] _ in
-            guard let newText = alert.textFields?.first?.text, !newText.isEmpty else { return }
-            self?.updateWish(at: indexPath.row, newText: newText)
+            guard let rawText = alert.textFields?.first?.text else { return }
+            let trimmed = rawText.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { return }
+
+            self?.updateWish(at: indexPath.row, newText: trimmed)
         })
 
         present(alert, animated: true)
