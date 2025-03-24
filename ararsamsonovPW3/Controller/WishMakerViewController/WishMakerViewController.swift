@@ -187,6 +187,7 @@ final class WishMakerViewController: UIViewController {
     
     @objc
     final func scheduleWishesButtonPressed() {
-        // ToDo
+        let vc = WishCalendarViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
