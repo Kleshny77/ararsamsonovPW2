@@ -14,13 +14,14 @@ final class WishCalendarViewController: UIViewController {
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
     )
+    lazy var backgroundColor = UIColor()
     
     
     
     // MARK: - Lifecycle Methods
     override final func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = backgroundColor
         configureCollection()
         configureNavigationBar()
     }
@@ -66,6 +67,7 @@ final class WishCalendarViewController: UIViewController {
     @objc
     private final func plusButtonPressed() {
         let creationVC = WishEventCreationView()
+        creationVC.backgroundColor = backgroundColor
         present(creationVC, animated: true)
     }
 }

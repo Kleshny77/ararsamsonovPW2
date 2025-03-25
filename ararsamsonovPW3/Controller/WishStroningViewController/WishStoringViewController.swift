@@ -14,12 +14,15 @@ final class WishStoringViewController: UIViewController {
     // MARK: - UI Elements
     private let table: UITableView = UITableView(frame: .zero)
     private lazy var wishArray: [Wish] = []
+    lazy var backgroundColor = UIColor()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WishStroningConstants.backgroundColor
         fetchWishes()
         configureTable()
+        view.backgroundColor = backgroundColor
     }
     
     // MARK: - Core Data Operations
