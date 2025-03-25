@@ -8,7 +8,7 @@
 import UIKit
 
 final class WishEventCell: UICollectionViewCell {
-    static let reuseIdentifier: String = reuseIdentifier
+    static let reuseIdentifier: String = WishEventCellConstants.reuseIdentifier
     
     private let wrapView: UIView = UIView()
     private let titleLabel: UILabel = UILabel()
@@ -89,7 +89,7 @@ final class WishEventCell: UICollectionViewCell {
         endDateLabel.font = WishEventCellConstants.dateFont
         
         endDateLabel.pinTop(to: descriptionLabel.bottomAnchor, WishEventCellConstants.labelSpacing)
-        endDateLabel.pinLeft(to: wrapView, WishEventCellConstants.labelLeading)
+        endDateLabel.pinLeft(to: startDateLabel.trailingAnchor, WishEventCellConstants.labelLeading)
         endDateLabel.pinBottom(to: wrapView, WishEventCellConstants.labelSpacing)
     }
 }

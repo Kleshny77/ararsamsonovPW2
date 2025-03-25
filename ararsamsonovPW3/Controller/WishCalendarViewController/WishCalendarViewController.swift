@@ -8,16 +8,21 @@
 import UIKit
 
 final class WishCalendarViewController: UIViewController {
+    private let plusButton = UIButton(type: .system)
+    
     private let collectionView: UICollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
     )
+    
+    
     
     // MARK: - Lifecycle Methods
     override final func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         configureCollection()
+        configureNavigationBar()
     }
     
     private final func configureCollection() {
@@ -46,6 +51,22 @@ final class WishCalendarViewController: UIViewController {
         collectionView.pinHorizontal(to: view)
         collectionView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         collectionView.pinTop(to: view.safeAreaLayoutGuide.topAnchor, WishCalendarConstants.collectionTop)
+    }
+    
+    private final func configureNavigationBar() {
+        let plusItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(plusButtonPressed)
+        )
+        navigationItem.rightBarButtonItem = plusItem
+    }
+    
+    // MARK: - Actions
+    @objc
+    private final func plusButtonPressed() {
+        let creationVC = WishEventCreationView()
+        present(creationVC, animated: true)
     }
 }
 

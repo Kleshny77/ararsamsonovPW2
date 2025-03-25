@@ -11,7 +11,7 @@ enum WishEventCellConstants {
     static let reuseIdentifier = "WishEventCell"
     
     // MARK: - Wrap
-    static let backgroundColor: UIColor = .black
+    static let backgroundColor: UIColor = .gray
     static let cornerRadius: CGFloat = 8
     
     static let offset: CGFloat = 8
@@ -20,7 +20,7 @@ enum WishEventCellConstants {
     static let titleFont: UIFont = .systemFont(ofSize: 17, weight: .medium)
     static let textColor: UIColor = .darkText
     
-    static let titleTop: CGFloat = 4
+    static let titleTop: CGFloat = 2
     static let labelLeading: CGFloat = 4
     
     // MARK: - Description Label

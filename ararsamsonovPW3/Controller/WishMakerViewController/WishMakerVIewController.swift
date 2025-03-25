@@ -23,7 +23,6 @@ final class WishMakerViewController: UIViewController {
     let toggleButton = UIButton(type: .system)
     let methodSelectionButton = UIButton(type: .system)
     let addWishButton: UIButton = UIButton(type: .system)
-    let addMoreWishesButton: UIButton = UIButton(type: .system)
     let scheduleWishesButton: UIButton = UIButton(type: .system)
     let sliderStack = UIStackView()
     let actionStack = UIStackView()
@@ -53,7 +52,6 @@ final class WishMakerViewController: UIViewController {
             toggleButton,
             methodSelectionButton,
             addWishButton,
-            addMoreWishesButton,
             scheduleWishesButton
         ]
         
@@ -178,11 +176,6 @@ final class WishMakerViewController: UIViewController {
     @objc
     final func addWishButtonPressed() {
         present(WishStoringViewController(), animated: true)
-    }
-    
-    @objc
-    final func addMoreWishesButtonPressed() {
-        // ToDo
     }
     
     @objc

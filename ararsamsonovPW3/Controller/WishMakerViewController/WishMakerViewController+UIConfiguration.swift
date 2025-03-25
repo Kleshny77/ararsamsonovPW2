@@ -145,28 +145,13 @@ extension WishMakerViewController {
         actionStack.axis = .vertical
         view.addSubview(actionStack)
         actionStack.spacing = WishMakerConstants.spacing
-        for button in [addMoreWishesButton, scheduleWishesButton] {
+        for button in [scheduleWishesButton] {
             actionStack.addArrangedSubview(button)
         }
-        configureAddMoreWishes()
         configureScheduleMissions()
         actionStack.pinTop(to: sliderStack.bottomAnchor, WishMakerConstants.sliderStackBottom)
         actionStack.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, WishMakerConstants.stackBottom)
         actionStack.pinHorizontal(to: view, WishMakerConstants.stackOffsetH)
-    }
-    
-    final private func configureAddMoreWishes() {
-        addMoreWishesButton.setTitle(WishMakerConstants.addMoreWishesButtonTitle, for: .normal)
-        
-        addMoreWishesButton.backgroundColor = WishMakerConstants.labelBackgroundColor
-        addMoreWishesButton.tintColor = WishMakerConstants.buttonTitleColor
-        
-        addMoreWishesButton.layer.cornerRadius = WishMakerConstants.labelCornerRadius
-        addMoreWishesButton.layer.borderWidth = WishMakerConstants.labelBorderWidth
-        
-        addMoreWishesButton.setHeight(WishMakerConstants.labelHeight)
-        
-        addMoreWishesButton.addTarget(self, action: #selector(addMoreWishesButtonPressed), for: .touchUpInside)
     }
     
     final private func configureScheduleMissions() {
